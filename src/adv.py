@@ -8,7 +8,7 @@ outside = Room("Outside Cave Entrance","North of you, the cave mount beckons",[I
 
 foyer = Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""",
-[Item('stick','provides meager defense'), 
+[Item('stick','provide meager defense'), 
 Item('A dead rat',' find out if you must pick up everything')])
 
 overlook = Room("Grand Overlook", """A steep cliff appears before you, falling
@@ -59,7 +59,7 @@ directions = ["n", "s", "e", "w"]
 
 while playing:
         # Print out some room data
-    print(f'\n~ {player.current_room.name} ~\n\t{player.current_room.description}\n')
+    print(player.current_room)
     if len(player.current_room.items) != 0:
         items_list = player.current_room.items.copy()
         for item in items_list:
@@ -99,7 +99,7 @@ while playing:
                         item_list = []
                         for item in player.items:
                             item_list.append(item.name)
-                        print(f'Your Inventory:{str(item_list)[1:-1]}')
+                        print(f'Your Inventory:{str(item_list)}')
                     elif rem == 'n':
                         pass
                     else:
@@ -108,10 +108,7 @@ while playing:
                 approved_ans = True
             else:
                 print('Choose yes or no!')
-        try:
-            player.current_room = player.current_room.s_to
-        except:
-            print('Ran into a wall silly')
+    print(player.current_room)
     cmd = input('>>>')
     if cmd in directions:
         player.move(cmd)       
