@@ -6,6 +6,7 @@ class Room:
         self.description = description
         self.items = item
 
+#String output for room
     def __str__(self):
         output = "\n"
         output += f"{self.name}\n"

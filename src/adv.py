@@ -2,7 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 
-# Declare all the rooms
+# Declare all the rooms NAME, DESCRIPTION, ITEM ARRAY
 
 outside = Room("Outside Cave Entrance","North of you, the cave mount beckons",[Item('Lantern','Provides light')])
 
@@ -40,75 +40,73 @@ treasure.s_to = narrow
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player("Xenu the Adventurer", outside)
+directions = ["n", "s", "e", "w"]
+playing = True
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
+
+while playing:
+        # Print out some room data
+    print(player.current_room)
+    # if len(player.current_room.items) != 0:
+    #     items_list = player.current_room.items.copy()
+    #     for item in items_list:
+    #         approved_ans = False
+    #         print(f"You Found:\n{item.name} to {item.description}")
+    #         while approved_ans is False:
+    #             ans = input('Pick up item?(y/n):')
+    #             if ans == 'y':
+    #                 player.items.append(item)
+    #                 player.current_room.items.remove(item)
+    #                 approved_ans = True
+    #             elif ans == 'n':
+    #                 approved_ans = True
+    #             else:
+    #                 print('Choose yes or no!') 
+
+
+    #     #player's inventory
+    #     items_list = []
+    #     for item in player.items:
+    #         items_list.append(item.name)
+    #     print(f'Your Inventory:{str(items_list)[1:-1]}')
+
+
+        #for player Inventory managment
+        # approved_ans = False
+        # while approved_ans is False:
+        #     ans = input('Manage Inventory? (y/n):')
+        #     if ans == 'y':
+        #         approved_ans == True
+        #         items_list = player.items.copy()
+        #         for item in items_list:
+        #             rem = input(f'Remove {item.name}?(y/n):')
+        #             if rem == 'y':
+        #                 player.items.remove(item)
+        #                 player.current_room.items.append(item)
+        #                 item_list = []
+        #                 for item in player.items:
+        #                     item_list.append(item.name)
+        #                 print(f'Your Inventory:{str(item_list)}')
+        #             elif rem == 'n':
+        #                 pass
+        #             else:
+        #                 pass
+        #     elif ans == 'n':
+        #         approved_ans = True
+        #         print(player.current_room)
+        #     else:
+        #         print('Choose yes or no!')
+
 # * Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
-# If the user enters "q", quit the game.
 
-playing = True
-player = Player("Xenu the Adventurer", outside)
-directions = ["n", "s", "e", "w"]
-
-
-while playing:
-        # Print out some room data
-    print(player.current_room)
-    if len(player.current_room.items) != 0:
-        items_list = player.current_room.items.copy()
-        for item in items_list:
-            approved_ans = False
-            print(f"You Found:\n{item.name} to {item.description}")
-            while approved_ans is False:
-                ans = input('Pick up item?(y/n):')
-                if ans == 'y':
-                    player.items.append(item)
-                    player.current_room.items.remove(item)
-                    approved_ans = True
-                elif ans == 'n':
-                    approved_ans = True
-                else:
-                    print('Choose yes or no!') 
-
-
-        #player's inventory
-        items_list = []
-        for item in player.items:
-            items_list.append(item.name)
-        print(f'Your Inventory:{str(items_list)[1:-1]}')
-
-
-        #for player to be able to manage
-        approved_ans = False
-        while approved_ans is False:
-            ans = input('Manage Inventory? (y/n):')
-            if ans == 'y':
-                approved_ans == True
-                items_list = player.items.copy()
-                for item in items_list:
-                    rem = input(f'Remove {item.name}?(y/n):')
-                    if rem == 'y':
-                        player.items.remove(item)
-                        player.current_room.items.append(item)
-                        item_list = []
-                        for item in player.items:
-                            item_list.append(item.name)
-                        print(f'Your Inventory:{str(item_list)}')
-                    elif rem == 'n':
-                        pass
-                    else:
-                        pass
-            elif ans == 'n':
-                approved_ans = True
-            else:
-                print('Choose yes or no!')
-    print(player.current_room)
     cmd = input('>>>')
     if cmd in directions:
         player.move(cmd)       
@@ -117,6 +115,7 @@ while playing:
         for item in player.items:
             item_list.append(item.name)
         print(f'Your Inventory:{str(item_list)[1:-1]}')
+    # If the user enters "q", quit the game.
     if cmd == 'q':
         playing = False
         print("Thanks for playing!")
